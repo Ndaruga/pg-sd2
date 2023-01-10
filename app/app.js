@@ -50,13 +50,29 @@ app.get("/hello/:name", function(req, res) {
 
 app.get("/test", function(req, res){
     res.send("Welcome to the test page")
-})
+});
 
 app.get("/student/:id/:name", function(req, res){
     console.log(req.params)
     res.send("Welcome Here "+req.params.name+" Your Id is : "+req.params.id);
 
-})
+});
+
+app.get("/Programmes", function(req, res){
+    var sql = "SELECT * FROM Programmes";
+    db.query(sql).then(results=>{
+        console.log(results);
+        res.json(results);
+    });
+});
+
+app.get("/All-students-formated", function(req, res){
+    var sql = "SELECT * FROM Students";
+    db.query(sql).then(results=>{
+        console.log(results);
+        res.json(results);
+    });
+});
 
 // Start server on port 3000
 app.listen(3000,function(){

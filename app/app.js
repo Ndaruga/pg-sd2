@@ -58,21 +58,38 @@ app.get("/student/:id/:name", function(req, res){
 
 });
 
-app.get("/Modules", function(req, res){
-    var sql = "SELECT * FROM Modules";
-    db.query(sql).then(results=>{
-        console.log(results);
-        res.json(results);
-    });
-});
-
-app.get("/All--formated", function(req, res){
+app.get("/students", function(req, res){
     var sql = "SELECT * FROM Students";
     db.query(sql).then(results=>{
         console.log(results);
         res.json(results);
     });
 });
+
+app.get("/all-students", function(req, res){
+    var sql = "SELECT * FROM Students";
+    var output = '<table border=".5px"';
+    db.query(sql).then(results=>{
+        for (var row of results){
+            output += '<tr>';
+            output += '<td>' + row.id + '</td>'
+            output += '<td>' + '<a href="./single-student/' + row.id + '">'+row.name+'</a>'+'</td>'
+            output += '</tr>'
+        }
+        output+='</table>'
+        res.send(output)
+    });
+});
+
+app.get("/programmes", function(req, res){
+    var sql = "SELECT * FROM Programmes";
+    db.query(sql).then(results=>{
+        console.log(results);
+        res.json(results);
+    });
+});
+
+
 
 // Start server on port 3000
 app.listen(3000,function(){

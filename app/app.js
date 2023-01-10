@@ -58,15 +58,15 @@ app.get("/student/:id/:name", function(req, res){
 
 });
 
-app.get("/Programmes", function(req, res){
-    var sql = "SELECT * FROM Programmes";
+app.get("/Modules", function(req, res){
+    var sql = "SELECT * FROM Modules";
     db.query(sql).then(results=>{
         console.log(results);
         res.json(results);
     });
 });
 
-app.get("/All-students-formated", function(req, res){
+app.get("/All--formated", function(req, res){
     var sql = "SELECT * FROM Students";
     db.query(sql).then(results=>{
         console.log(results);
